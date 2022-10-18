@@ -74,9 +74,11 @@ public class Settings implements Sendable {
         }
 
         private void handleSet(double value) {
-            currentValue = value;
-            for (var collector : collectors) {
-                collector.accept(value);
+            if (value != currentValue) {
+                currentValue = value;
+                for (var collector : collectors) {
+                    collector.accept(value);
+                }
             }
         }
 
