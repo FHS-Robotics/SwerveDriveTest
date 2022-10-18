@@ -8,6 +8,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
 import static frc.robot.Constants.*;
+import static frc.robot.Settings.*;
 
 public class DriveTrain {
 	/** Maximum speed (meters per second) a motor may spin at. */
@@ -78,11 +79,11 @@ public class DriveTrain {
 
 	private static WPI_TalonFX newSteer(int motorIndex, boolean inverted) {
 		WPI_TalonFX motor = newDrive(motorIndex, inverted);
-		motor.config_kF(0, kF, kTimeoutMs);
-		motor.config_kP(0, kP, kTimeoutMs);
-		motor.config_kI(0, (int) kI, kTimeoutMs);
-		motor.config_kD(0, kD, kTimeoutMs);
-		motor.config_IntegralZone(0, kIntegralZone, kTimeoutMs);
+		sF.collect((value) -> motor.config_kF(0, value, kTimeoutMs));
+		sP.collect((value) -> motor.config_kP(0, value, kTimeoutMs));
+		sI.collect((value) -> motor.config_kI(0, value, kTimeoutMs));
+		sD.collect((value) -> motor.config_kD(0, value, kTimeoutMs));
+		sIntegralZone.collect((value) -> motor.config_IntegralZone(0, value, kTimeoutMs));
 		motor.configClosedLoopPeakOutput(0, kMaxSteerPercent, kTimeoutMs);
 		motor.configClosedLoopPeriod(0, kSteerLoopPeriodMs, kTimeoutMs);
 		motor.selectProfileSlot(0, 0);
