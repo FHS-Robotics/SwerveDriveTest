@@ -1,0 +1,5 @@
+* text=auto
+
+/src/main/deploy/* eol=lf
+/gradlew eol=lf
+/.wpilib/wpilib_preferences.json eol=lf
