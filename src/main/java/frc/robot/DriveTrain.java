@@ -21,11 +21,10 @@ public class DriveTrain {
 		new Translation2d(-0.2794,  0.2794)  // Bottom Left
 	);
 
-	// TODO: Enter Motor Indicies
-    private SwerveModule frontLeft  = new SwerveModule(newDrive(0, false), newSteer(0, false));
-    private SwerveModule frontRight = new SwerveModule(newDrive(0, false), newSteer(0, false));
-    private SwerveModule backRight  = new SwerveModule(newDrive(0, true), newSteer(0, false));
-    private SwerveModule backLeft   = new SwerveModule(newDrive(0, false), newSteer(0, false));
+    private SwerveModule frontLeft  = new SwerveModule(newDrive(0, false), newSteer(4, false));
+    private SwerveModule frontRight = new SwerveModule(newDrive(1, false), newSteer(5, false));
+    private SwerveModule backRight  = new SwerveModule(newDrive(2, false), newSteer(6, false));
+    private SwerveModule backLeft   = new SwerveModule(newDrive(3, false), newSteer(7, false));
 
 	/**
 	 * Set the linear and angular velocity targets.
