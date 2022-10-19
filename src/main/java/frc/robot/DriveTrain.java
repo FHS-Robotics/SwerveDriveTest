@@ -35,6 +35,7 @@ public class DriveTrain {
 	 * @param vAngle positive-clockwise (radians per second).
 	 */
     public void drive(double vForwards, double vSideways, double vAngle) {
+		// TODO: Have linear velocity be field oriented, if wanted.
 		ChassisSpeeds chassisSpeeds = new ChassisSpeeds(vForwards, -vSideways, -vAngle);
 		SwerveModuleState[] swerveModuleStates = kinematics.toSwerveModuleStates(chassisSpeeds);
 		SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, maximumAttainableSpeed);
