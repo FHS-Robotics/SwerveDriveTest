@@ -25,7 +25,7 @@ public class Settings implements Sendable {
     private Settings() {}
 
     public static void initialize() {
-        Shuffleboard.getTab("Settings").add(new Settings());
+        Shuffleboard.getTab("Settings").add("Settings Sendable", new Settings());
     }
 
     @Override
