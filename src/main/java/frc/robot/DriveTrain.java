@@ -1,14 +1,11 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
-import static frc.robot.Constants.*;
-import static frc.robot.Settings.*;
+import static frc.robot.SwerveMotorFactory.*;
 
 public class DriveTrain {
 	/** Maximum speed (meters per second) a motor may spin at. */
@@ -66,27 +63,5 @@ public class DriveTrain {
 		frontRight.resetWheel();
 		backRight.resetWheel();
 		backLeft.resetWheel();
-	}
-
-	private static WPI_TalonFX newDrive(int motorIndex, boolean inverted) {
-		WPI_TalonFX motor = new WPI_TalonFX(motorIndex);
-		motor.setSelectedSensorPosition(0, 0, kTimeoutMs);
-		motor.setInverted(inverted);
-		motor.setSensorPhase(inverted);
-		motor.configNeutralDeadband(0.1, kTimeoutMs);
-		return motor;
-	}
-
-	private static WPI_TalonFX newSteer(int motorIndex, boolean inverted) {
-		WPI_TalonFX motor = newDrive(motorIndex, inverted);
-		sF.collect((value) -> motor.config_kF(0, value, kTimeoutMs));
-		sP.collect((value) -> motor.config_kP(0, value, kTimeoutMs));
-		sI.collect((value) -> motor.config_kI(0, value, kTimeoutMs));
-		sD.collect((value) -> motor.config_kD(0, value, kTimeoutMs));
-		sIntegralZone.collect((value) -> motor.config_IntegralZone(0, value, kTimeoutMs));
-		motor.configClosedLoopPeakOutput(0, kMaxSteerPercent, kTimeoutMs);
-		motor.configClosedLoopPeriod(0, kSteerLoopPeriodMs, kTimeoutMs);
-		motor.selectProfileSlot(0, 0);
-		return motor;
 	}
 }
